@@ -24,7 +24,11 @@
             </ion-grid>
             <ion-list>
                 <ion-item v-for="(item, index) in data" :key="index">
-                    <ion-card color="dark" style="border-radius: 16px" :router-link="`/pond/${item._id}`">
+                    <ion-card
+                        color="dark"
+                        style="border-radius: 16px"
+                        :router-link="`/updater/${item._id}`"
+                    >
                         <ion-card-header>
                             <ion-grid>
                                 <ion-row
@@ -185,7 +189,7 @@ export default defineComponent({
         const data = ref();
 
         onMounted(async () => {
-            const response = await axios.get("http://127.0.0.1:5000/%22);
+            const response = await axios.get("http://127.0.0.1:5000/");
             data.value = response.data[0];
             console.log(response.data[0]);
         });

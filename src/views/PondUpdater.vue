@@ -18,9 +18,7 @@
                                 /></svg
                         ></ion-fab-button>
                     </ion-col>
-                    <ion-col size="7"
-                        ><h1 id="judul">Edit Kolam</h1></ion-col
-                    >
+                    <ion-col size="7"><h1 id="judul">Edit Kolam</h1></ion-col>
                     <ion-col></ion-col>
                 </ion-row>
             </ion-grid>
@@ -29,28 +27,27 @@
                 <div style="margin-top: 1rem">
                     <ion-label>Nama Kolam</ion-label>
                     <ion-item style="border-radius: 12px; margin-top: 1rem">
-                        <ion-input
-                            placeholder="Kolam 1"
-                            v-model="name"
-                        ></ion-input>
+                        <ion-input :clear-on-edit="true" v-model="name">{{
+                            data.name
+                        }}</ion-input>
                     </ion-item>
                 </div>
                 <div style="margin-top: 1rem">
                     <ion-label>Lokasi Kolam</ion-label>
                     <ion-item style="border-radius: 12px; margin-top: 1rem">
-                        <ion-input
-                            placeholder="Blok A"
-                            v-model="location"
-                        ></ion-input>
+                        <ion-input :clear-on-edit="true" v-model="location">{{
+                            data.location
+                        }}</ion-input>
                     </ion-item>
                 </div>
                 <div style="margin-top: 1rem">
                     <ion-label>Material Kolam</ion-label>
                     <ion-item style="border-radius: 12px; margin-top: 1rem">
                         <ion-select
+                            placeholder="Tanah"
                             v-model="material"
                             interface="popover"
-                            placeholder="Tanah"
+                            :selectedText="`${data.material}`"
                         >
                             <!-- <ion-select-option
                                 v-for="option in material_options"
@@ -78,9 +75,10 @@
                     <ion-label>Bentuk Kolam</ion-label>
                     <ion-item style="border-radius: 12px; margin-top: 1rem">
                         <ion-select
+                            placeholder="Kotak"
                             interface="popover"
-                            placeholder="Bundar"
                             v-model="shape"
+                            :selectedText="`${data.shape}`"
                         >
                             <!-- <ion-select-option
                                 v-for="option in shape_options"
@@ -105,7 +103,7 @@
                     color="primary"
                     style="width: 100%; margin-top: 1rem; border-radius: 25px"
                     @click.prevent="testSubmit"
-                    >Registrasi</ion-button
+                    >Update</ion-button
                 >
             </div>
         </ion-content>
@@ -127,7 +125,7 @@ import {
     IonRow,
     IonCol,
 } from "@ionic/vue";
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 
 // import { Storage } from "@ionic/storage";
 
@@ -141,15 +139,6 @@ export default defineComponent({
             location: "",
             shape: "",
             material: "",
-            // material_options: [
-            //     { id: 1, name: "Tanah" },
-            //     { id: 2, name: "Beton" },
-            //     { id: 3, name: "Terpal" },
-            // ],
-            // shape_options: [
-            //     { id: 1, name: "Kotak" },
-            //     { id: 2, name: "Bundar" },
-            // ],
         };
     },
     components: {
@@ -168,7 +157,7 @@ export default defineComponent({
     },
     methods: {
         testSubmit() {
-            let register = {
+            let update = {
                 name: this.name,
                 location: this.location,
                 shape: this.shape,
@@ -176,16 +165,36 @@ export default defineComponent({
             };
 
             axios
-                .post("http://127.0.0.1:5000/register", register)
+                .patch(
+                    "http://127.0.0.1:5000/pond/" + this.$route.params.id,
+                    update
+                )
                 .then((response) => {
                     console.log(response);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
-            console.log(register);
         },
+    },
+    setup() {
+        let url = window.location.href;
+        const urlID = url.split("/")[4];
+
+        const data = ref({});
+
+        onMounted(async () => {
+            const response = await axios.get(
+                "http://127.0.0.1:5000/pond/" + urlID
+            );
+            data.value = response.data[0];
+            console.log(data);
+        });
+
+        return {
+            data,
+            urlID,
+        };
     },
 });
 </script>
