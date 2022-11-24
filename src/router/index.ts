@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "@ionic/vue-router";
 import { RouteRecordRaw } from "vue-router";
 import TabsPage from "../views/TabsPage.vue";
 import HomePage from "../views/HomePage.vue";
-import PondPage from "../views/PondPage.vue";
 import PageSecond from "../views/Page2.vue";
 import RegisterPage from "../views/RegisterPage.vue";
 import PondUpdater from "../views/PondUpdater.vue";
@@ -44,10 +43,9 @@ const routes: Array<RouteRecordRaw> = [
         component: RegisterPage,
     },
     {
-        path: "/updater",
+        path: "/updater/:id",
         component: PondUpdater,
     },
-    
 ];
 
 const router = createRouter({
