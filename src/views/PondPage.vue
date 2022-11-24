@@ -185,11 +185,9 @@ export default defineComponent({
         const data = ref();
 
         onMounted(async () => {
-            const response = await axios.get(
-                "http://jft.web.id/fishapi/api/ponds"
-            );
-            data.value = response.data;
-            console.log(response.data);
+            const response = await axios.get("http://127.0.0.1:5000/%22);
+            data.value = response.data[0];
+            console.log(response.data[0]);
         });
 
         return {
