@@ -24,7 +24,7 @@
             </ion-grid>
             <ion-list>
                 <ion-item v-for="(item, index) in data" :key="index">
-                    <ion-card color="dark" style="border-radius: 16px">
+                    <ion-card color="dark" style="border-radius: 16px" :router-link="`/pond/${item._id}`">
                         <ion-card-header>
                             <ion-grid>
                                 <ion-row
@@ -33,7 +33,7 @@
                                 >
                                     <ion-col id="card-title"
                                         ><strong>{{
-                                            item.alias
+                                            item.name
                                         }}</strong></ion-col
                                     >
                                     <ion-col class="ion-text-end"
