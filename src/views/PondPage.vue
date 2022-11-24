@@ -76,9 +76,7 @@
                                     <ion-col
                                         class="ion-text-start"
                                         style="font-size: 16px"
-                                        >{{
-                                            formatDate(item.build_at)
-                                        }}</ion-col
+                                        >24-11-2022</ion-col
                                     >
                                 </ion-row>
                                 <ion-row class="ion-align-items-center">
@@ -94,10 +92,7 @@
                                     <ion-col
                                         class="ion-text-start"
                                         style="font-size: 16px"
-                                        >{{
-                                            getDiffDateFromNow(item.build_at)
-                                        }}
-                                        Hari</ion-col
+                                        >2 Hari</ion-col
                                     >
                                 </ion-row>
                                 <ion-row class="ion-align-items-center">
@@ -113,7 +108,7 @@
                                     <ion-col
                                         class="ion-text-start"
                                         style="font-size: 16px"
-                                        >{{ item.id_int }} Ekor</ion-col
+                                        >200 Ekor</ion-col
                                     >
                                 </ion-row>
                             </ion-grid>
