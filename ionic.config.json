@@ -1,0 +1,7 @@
+{
+  "name": "fishapi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
