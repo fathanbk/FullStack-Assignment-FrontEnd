@@ -1,5 +1,5 @@
 # FullStack-Assignment-FrontEnd
-
+All members are present and active for 7 hours+ discussion in Discord
 ## Team Members:
 
 -   Aldy Syachranie (1313621012)
